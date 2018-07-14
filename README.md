@@ -1,21 +1,21 @@
 # City Route, A Microservices Example Proyect
 
-# Components
-Config Server --> TODO: Git
-Eureka Server
-Zuul
-Ribbon
+## Components
+- Config Server --> TODO: Git
+- Eureka Server
+- Zuul
+- Ribbon
 
-# Libraries
-Spring Boot
-Eureka
-Zuul
-Ribbon
-Spring Cloud Config
-Lombok
-Swagger
+## Libraries
+- Spring Boot
+- Eureka
+- Zuul
+- Ribbon
+- Spring Cloud Config
+- Lombok
+- Swagger
 
-# How to run this example :
+## How to run this example :
 Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more. 
 
 ```sh
