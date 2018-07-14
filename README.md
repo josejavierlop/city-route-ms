@@ -1,12 +1,12 @@
-#Best Route Application - José Javier Lop
+# City Route, A Microservices Example Proyect
 
-#Components
+# Components
 Config Server --> TODO: Git
 Eureka Server
 Zuul
 Ribbon
 
-#Libraries
+# Libraries
 Spring Boot
 Eureka
 Zuul
@@ -15,7 +15,7 @@ Spring Cloud Config
 Lombok
 Swagger
 
-#How to run this example :
+# How to run this example :
 Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more. 
 
 ```sh
