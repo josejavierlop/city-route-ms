@@ -17,7 +17,7 @@ Example application of microservice architecture using Spring Boot, Spring Cloud
 - Swagger: Open Api specification.
 
 ## How to run the example :
-Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more. 
+Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more.
 
 ```sh
 set DOCKER_HOST=tcp://192.168.99.100:2376
@@ -27,17 +27,16 @@ set DOCKER_TOOLBOX_INSTALL_PATH=C:\Program Files\Docker Toolbox
 set DOCKER_CERT_PATH=C:\Users\josej\.docker\machine\machines\default
 ```
 
-Host value can be checked running the following command:
+Host value can be localhost, but if you're using boot2docker, you must access it via the boot2docker IP address instead of localhost. If you're using Docker Toolbox, you must access it via the docker-machine IP address instead of localhost.
 
 ```sh
 docker-machine ip
 ```
 
-
-
 You can run this at once editing the provided script with your own values.
 
 ```sh
+## Sets neceary enviromental variables in my windows machine, change it if you need with your own values
 env.bat
 ```
 

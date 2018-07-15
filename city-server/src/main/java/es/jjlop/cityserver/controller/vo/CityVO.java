@@ -6,7 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class CityVO {
-    final String name;
-    final String destinationCity;
-
+    private final Long id;
+    private final String name;
 }
