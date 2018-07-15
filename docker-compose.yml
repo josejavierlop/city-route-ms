@@ -38,10 +38,23 @@ services:
       - 8080
     networks:
       - network1
-    scale: 2
+    scale: 1
     depends_on:
       - discovery
       - config
- 
+  calculation:
+    build:
+      context: ./calculation-server
+      dockerfile: Dockerfile
+    image: calculation-server
+    ports:
+      - 8081
+    networks:
+      - network1
+    scale: 1
+    depends_on:
+      - discovery
+      - config 
+      - city
 networks:
   network1:

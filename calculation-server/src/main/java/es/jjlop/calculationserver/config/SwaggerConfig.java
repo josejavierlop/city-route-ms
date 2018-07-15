@@ -1,4 +1,4 @@
-package es.jjlop.cityserver.config;
+package es.jjlop.calculationserver.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,8 +27,8 @@ public class SwaggerConfig {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "City-Route Search Service",
-                "City-Route Search Service",
+                "City-Route Calculation Service",
+                "City-Route Calculation Service",
                 "v1",
                 "https://www.gnu.org/licenses/gpl.html",
                 new Contact("Jose Javier Lop", "https://www.linkedin.com/in/jos%C3%A9-javier-lop-845422b/", "josejavierlop@gmail.com"),

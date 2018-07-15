@@ -10,11 +10,11 @@
     <name>Spring boot docker route calculation</name>
 
     <modules>
-        <module>demo-server</module>
-        <module>discovery-server</module>
-        <module>city-server</module>
         <module>config-server</module>
+        <module>discovery-server</module>
         <module>api-server</module>
+        <module>city-server</module>
+        <module>calculation-server</module>
     </modules>
 
 </project>

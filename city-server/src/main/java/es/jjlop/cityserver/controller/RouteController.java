@@ -1,9 +1,7 @@
 package es.jjlop.cityserver.controller;
 
-import es.jjlop.cityserver.controller.vo.CityVO;
 import es.jjlop.cityserver.controller.vo.ResponseVO;
 import es.jjlop.cityserver.controller.vo.RouteVO;
-import es.jjlop.cityserver.service.CitySearchService;
 import es.jjlop.cityserver.service.RouteSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RefreshScope
 @RestController
