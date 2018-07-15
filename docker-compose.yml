@@ -1,0 +1,47 @@
+version: '2.2'
+services:
+  discovery:
+    build:
+      context: ./discovery-server
+      dockerfile: Dockerfile
+    image: discovery-server
+    ports:
+      - "9091:9091"
+    networks:
+      - network1
+  config:
+    build:
+      context: ./config-server
+      dockerfile: Dockerfile
+    image: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - network1
+  api:
+    build:
+      context: ./api-server
+      dockerfile: Dockerfile
+    image: api-server
+    depends_on:
+     - discovery
+    ports:
+     - "9090:9090"
+    networks:
+     - network1
+  city:
+    build:
+      context: ./city-server
+      dockerfile: Dockerfile
+    image: city-server
+    ports:
+      - 8080
+    networks:
+      - network1
+    scale: 2
+    depends_on:
+      - discovery
+      - config
+ 
+networks:
+  network1:
