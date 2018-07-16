@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@FeignClient(name = "city-server", fallbackFactory  = CityClient.CityClientFallbackFactory.class)
+@FeignClient(name = "city-server",
+        configuration = FeignClientConfiguration.class,
+        fallbackFactory  = CityClient.CityClientFallbackFactory.class)
 public interface CityClient {
     @RequestMapping(method = RequestMethod.GET, value = "/routes/{origin}")
     ResponseVO<List<RouteVO>> getRoutesByOrigin(@PathVariable("origin") String origin);

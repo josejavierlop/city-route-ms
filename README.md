@@ -28,10 +28,16 @@ Swagger API definition is available in repository
 - Swagger: Open Api specification.
 - JPA: ORM to manage database with an object oriented approach.
 - Mockito: Test framework for mock components.
+- Spring security: To securize endpoints
 
 I have used Feign to make calls between calculation MS and cities MS. It internally uses hystrix, riboon and eureka, however, hystrix fallback method not working, most likely due to some bug on hystrix or riboon. I didn't have time to further investigate this. Hystrix works well using another client like RestTemplate.
 
 ## How to run the example :
+
+API endpoints have basic security authentication. To access them you have to use following credentials:
+- User: "user"
+- Password: "password"
+
 Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more.
 
 ```sh
@@ -70,7 +76,7 @@ docker-compose scale city=2
 ```
 
 
-Once all the services are up, the following URLs will be available
+Once all the services are up, the following URLs will be available.
 
 Address | Description
 --- | ---
@@ -91,7 +97,11 @@ http://<\<docker-host>\>:9090/api/calculation-server/v2/api-docs | Calculation s
 
 ### City Server
 
-Microservice to provide information about cities and routes
+Microservice to provide information about cities and routes. 
+
+Remember that API endpoints have basic security authentication. To access them you have to use following credentials:
+- User: "user"
+- Password: "password"
 
 Method | Path | Description
 --- | --- | ---
@@ -102,7 +112,11 @@ GET | /routes/{origin} | List all routes with origin in requested City.
 
 ### Calculation Server
 
-Microservice to provide calculations about best routes using City Server API
+Microservice to provide calculations about best routes using City Server API.
+
+Remember that API endpoints have basic security authentication. To access them you have to use following credentials:
+- User: "user"
+- Password: "password"
 
 Method | Path | Description
 --- | --- | ---
@@ -180,6 +194,7 @@ Because of lack of time and the fact that this is a proof of concept, there are 
 - ELK (Elastic Search, Logstash, Kibana) system should be in place in order to monitor logs of distributed system.
 - Cloud config is in place but it is not configured to use a GIT repository using ssh keys, that should be the production configuration.
 - Many components are configured by default (Like Riboon load balance method, timeouts...), this should be properly configured based on network topology.
+- Security is implemented using basic security with hardcoded user and password in code. Of course this should be changed to [OAuth2 with credentials in database and JWT access tokens](https://spring.io/guides/tutorials/spring-boot-oauth2/) .
 
 ## Pipeline proposal for application
 
