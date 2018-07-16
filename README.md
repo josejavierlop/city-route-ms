@@ -11,11 +11,17 @@ Example application of microservice architecture using Spring Boot, Spring Cloud
 ## Use of libraries
 - Spring Boot: Framework for easy creation of microservices.
 - Spring Cloud Config: To allow centraliced configuration.
-- Spring Cloud Netflix: Technology stack for microservices that does not depend on platform.
+- Spring Cloud Netflix: Technology stack for microservices that does not depend on platform / container features.
+	- Feign: Declarative rest client. Used to make calls between microservices using Eureka, Riboon and Hystrix.
+	- Riboon: Client load balance between instances of same service.
+	- Hystrix: Circuit breaker used to use an alternative response when required service is down.
+	- Zuul: Api gateway that uses Eureka and Riboon.
+	- Eureka: To register and discover services, used by the rest of the components to locate services.
 - Docker, Docker-compose: Container technology used to not depend on local environment.
 - Lombok: To reduce redundant/boilerplate code.
 - Swagger: Open Api specification.
 - JPA: ORM to manage database with an object oriented approach.
+- Mockito: Test framework for mock components.
 
 ## How to run the example :
 Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more.
@@ -149,3 +155,11 @@ insert into steps(id, route_id, step_order, origin_id, destination_id, hours) va
 insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(7,4,1,2,1,3);
 insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(8,4,2,1,3,3);
 ```
+
+## Improvement points
+
+Because of lack of time and the fact that this is a proof of concept, there are things that could be improved, here is a few of them:
+
+- Database should be autonomous and not embedded/in memory one. And ideally should be replicated in order to assure high availability.
+- ELK (Elastic Search, Logstash, Kibana) system should be in place in order to monitor logs of distributed system.
+- Cloud config is in place but it is not configured to use a GIT repository using ssh keys, that should be the production configuration.
