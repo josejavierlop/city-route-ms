@@ -73,5 +73,79 @@ http://<\<docker-host>\>:9090/api/calculation-server/calculations/duration/{orig
 http://<\<docker-host>\>:9090/api/calculation-server/swagger-ui.html | Calculation service Swagger-ui Tool
 http://<\<docker-host>\>:9090/api/calculation-server/v2/api-docs | Calculation service Open API specification
 
+## Microservices definitions
 
-	
+### City Server
+
+Microservice to provide information about cities and routes
+
+Method | Path | Description
+--- | ---
+GET | /cities | List all cities.
+GET | /cities/{name} | Get requested City.
+GET | /routes | List all routes.
+GET | /routes/{origin} | List all routes with origin in requested City.
+
+### Calculation Server
+
+Microservice to provide calculations about best routes using City Server API
+
+Method | Path | Description
+--- | ---
+GET | /calculations/connections/{origin}/{destination} | Get less connections route from origin to destination.
+GET | /calculations/duration/{origin}/{destination} | Get less duration route from origin to destination.
+
+## Database desing
+
+Definition of the database table model used. There is sample data available for test.
+
+### CITIES table
+
+There are 8 cities available, loaded with the following script;
+
+```sql
+insert into cities(id, name) values(1,'Zaragoza');
+insert into cities(id, name) values(2,'Madrid');
+insert into cities(id, name) values(3,'Barcelona');
+insert into cities(id, name) values(4,'Teruel');
+insert into cities(id, name) values(5,'Valencia');
+insert into cities(id, name) values(6,'La Coruña');
+insert into cities(id, name) values(7,'Cáceres');
+insert into cities(id, name) values(8,'Sevilla');
+```
+
+### ROUTES table
+
+There are 4 routes available, 3 from Zaragoza to Sevilla to test route calculations and 1 from Madrid to Barcelona:
+
+```sql
+-- Zgz - Sev
+insert into routes(id, origin_id, destination_id) values(1,1,8);
+insert into routes(id, origin_id, destination_id) values(2,1,8);
+insert into routes(id, origin_id, destination_id) values(3,1,8);
+-- Mad - Bcn
+insert into routes(id, origin_id, destination_id) values(4,2,3);
+```
+
+
+### ROUTES steps
+
+Routes have steps, which are the connections between cities and have a duration in hours
+
+```sql
+-- Zgz - Sev (Route 1)
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(1,1,1,1,2,3);
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(2,1,2,2,3,3);
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(3,1,3,3,8,4);
+
+-- Zgz - Sev (Route 2)
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(4,2,1,1,2,3);
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(5,2,2,2,8,6);
+
+-- Zgz - Sev (Route 3)
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(6,3,1,1,8,11);
+
+-- Mad - Bcn (Route 1)
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(7,4,1,2,1,3);
+insert into steps(id, route_id, step_order, origin_id, destination_id, hours) values(8,4,2,1,3,3);
+```
