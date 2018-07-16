@@ -24,8 +24,12 @@ import java.util.List;
 @Api(value="City Route Search API", description = "Access to information about routes")
 public class RouteController {
 
-    @Autowired
     private RouteSearchService routeSearchService;
+
+    @Autowired
+    public RouteController(RouteSearchService routeSearchService){
+        this.routeSearchService = routeSearchService;
+    }
 
     @RequestMapping(path = "/routes/{origin}",
             method = RequestMethod.GET,

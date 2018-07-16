@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -64,6 +66,7 @@ public class RouteCalculatorControllerTest {
         mvc.perform(get("/calculations/connections/A/B"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(asJsonString(new ResponseVO<>(route1))));
+        verify(routeCalculatorService, times(1)).calculateLessConnectionsRoute("A", "B");
     }
 
     @Test
@@ -73,6 +76,7 @@ public class RouteCalculatorControllerTest {
         mvc.perform(get("/calculations/duration/A/B"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(asJsonString(new ResponseVO<>(route1))));
+        verify(routeCalculatorService, times(1)).calculateLessDurationsRoute("A", "B");
     }
 
     @Test
@@ -81,6 +85,7 @@ public class RouteCalculatorControllerTest {
 
         mvc.perform(get("/calculations/connections/A/B"))
                 .andExpect(status().is(404));
+        verify(routeCalculatorService, times(1)).calculateLessConnectionsRoute("A", "B");
     }
 
     @Test
@@ -89,6 +94,7 @@ public class RouteCalculatorControllerTest {
 
         mvc.perform(get("/calculations/duration/A/B"))
                 .andExpect(status().is(404));
+        verify(routeCalculatorService, times(1)).calculateLessDurationsRoute("A", "B");
     }
 
     private String asJsonString(Object data) throws JsonProcessingException {

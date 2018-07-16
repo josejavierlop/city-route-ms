@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -65,6 +67,7 @@ public class RouteCalculatorServiceImplTest {
         Assert.assertThat(route.get().getSteps().size(), is(2));
         Assert.assertThat(route.get().getTotalDuration(), is(10.2));
         Assert.assertThat(route.get(), is(route1));
+        verify(cityClient, times(1)).getRoutesByOrigin("A");
     }
 
     @Test
@@ -79,6 +82,7 @@ public class RouteCalculatorServiceImplTest {
         Assert.assertThat(route.get().getSteps().size(), is(5));
         Assert.assertThat(route.get().getTotalDuration(), is(10.1));
         Assert.assertThat(route.get(), is(route2));
+        verify(cityClient, times(1)).getRoutesByOrigin("A");
     }
 
     @Test
@@ -90,6 +94,7 @@ public class RouteCalculatorServiceImplTest {
         Optional<RouteVO> route = component.calculateLessDurationsRoute("A", "Z");
 
         Assert.assertThat(route.isPresent(), is(false));
+        verify(cityClient, times(1)).getRoutesByOrigin("A");
     }
 
     @Test
@@ -101,5 +106,6 @@ public class RouteCalculatorServiceImplTest {
         Optional<RouteVO> route = component.calculateLessDurationsRoute("A", "XXX");
 
         Assert.assertThat(route.isPresent(), is(false));
+        verify(cityClient, times(1)).getRoutesByOrigin("A");
     }
 }

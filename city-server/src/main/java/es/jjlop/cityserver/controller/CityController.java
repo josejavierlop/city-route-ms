@@ -24,8 +24,13 @@ import java.util.Optional;
 @RestController
 @Api(value="City Search API", description = "Access to information about cities")
 public class CityController {
-    @Autowired
+
     private CitySearchService citySearchService;
+
+    @Autowired
+    public CityController(CitySearchService citySearchService){
+        this.citySearchService = citySearchService;
+    }
 
     @RequestMapping(path = "/cities/{name}",
             method = RequestMethod.GET,

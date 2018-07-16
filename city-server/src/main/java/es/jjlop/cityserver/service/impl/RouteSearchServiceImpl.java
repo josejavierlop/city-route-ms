@@ -17,11 +17,14 @@ import java.util.stream.Collectors;
 @Service
 public class RouteSearchServiceImpl implements RouteSearchService {
 
-    @Autowired
     private RoutesRepository routesRepository;
+    private CitiesRepository citiesRepository;
 
     @Autowired
-    private CitiesRepository citiesRepository;
+    public RouteSearchServiceImpl(RoutesRepository routesRepository, CitiesRepository citiesRepository){
+        this.routesRepository = routesRepository;
+        this.citiesRepository = citiesRepository;
+    }
 
     @Override
     public List<RouteVO> findRoutes(String origin) {

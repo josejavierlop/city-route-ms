@@ -13,8 +13,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class CitySearchServiceImp implements CitySearchService {
-    @Autowired
+
     private CitiesRepository cityRepository;
+
+    @Autowired
+    public CitySearchServiceImp(CitiesRepository citiesRepository){
+        this.cityRepository = citiesRepository;
+    }
 
     public Optional<CityVO> findCity(String city) {
         CityVO data = mapToVO(cityRepository.getCityByName(city));
