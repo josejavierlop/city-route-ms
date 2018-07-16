@@ -165,3 +165,22 @@ Because of lack of time and the fact that this is a proof of concept, there are 
 - ELK (Elastic Search, Logstash, Kibana) system should be in place in order to monitor logs of distributed system.
 - Cloud config is in place but it is not configured to use a GIT repository using ssh keys, that should be the production configuration.
 - Many components are configured by default (Like Riboon load balance method, timeouts...), this should be properly configured based on network topology.
+
+## Pipeline proposal for application
+
+First of all, this application has five modules in one repository. This is a POC, in production it should have one repository for each module, in order to allow separate life cycles between modules (And probably development teams). 
+
+This, and the fact that there are no libraries in common between components and each component can have is own version, is interesting to provide the ability of make frequent updates.
+
+That being said, here is a simple pipeline proposal for each module of the application.
+
+- Developer Commits to his branch and creats pull request to RELEASE branch (Git)
+- Team lead does code review and approves pull request (Stash / Bitbucker / GitLab)
+- CI passes unit tests (maven or gradle)
+- CI passes code quality (SonarQube plugin)
+- CI passes integration tests of dependant components (Smartbear soap ui plugin for maven)
+- CI builds artifacts (jars and docker images) and publish to Nexus or Artifactory
+- CI deploys docker images to staging (using proper tool acording to platform, like oc, kubectl...)
+- CI passes acceptance tests
+- CI deploys to production (Maybe with manual approval)
+- CI passes smoke test to production.
