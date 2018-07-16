@@ -23,6 +23,8 @@ Example application of microservice architecture using Spring Boot, Spring Cloud
 - JPA: ORM to manage database with an object oriented approach.
 - Mockito: Test framework for mock components.
 
+I have used Feign to make calls between calculation MS and cities MS. It internally uses hystrix, riboon and eureka, however, hystrix fallback method not working, most likely due to some bug on hystrix or riboon. I didn't have time to further investigate this. Hystrix works well using another client like RestTemplate.
+
 ## How to run the example :
 Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more.
 
@@ -133,8 +135,7 @@ insert into routes(id, origin_id, destination_id) values(3,1,8);
 insert into routes(id, origin_id, destination_id) values(4,2,3);
 ```
 
-
-### ROUTES steps
+### STEPS table
 
 Routes have steps, which are the connections between cities and have a duration in hours
 
@@ -163,3 +164,4 @@ Because of lack of time and the fact that this is a proof of concept, there are 
 - Database should be autonomous and not embedded/in memory one. And ideally should be replicated in order to assure high availability.
 - ELK (Elastic Search, Logstash, Kibana) system should be in place in order to monitor logs of distributed system.
 - Cloud config is in place but it is not configured to use a GIT repository using ssh keys, that should be the production configuration.
+- Many components are configured by default (Like Riboon load balance method, timeouts...), this should be properly configured based on network topology.
