@@ -27,6 +27,8 @@ services:
      - discovery
     ports:
      - "9090:9090"
+    environment:
+     - "SPRING_PROFILES_ACTIVE=int" 
     networks:
      - network1
   city:
@@ -36,6 +38,8 @@ services:
     image: city-server
     ports:
       - 8080
+    environment:
+     - "SPRING_PROFILES_ACTIVE=int" 
     networks:
       - network1
     scale: 1
@@ -48,7 +52,9 @@ services:
       dockerfile: Dockerfile
     image: calculation-server
     ports:
-      - 8081
+      - 8090
+    environment:
+     - "SPRING_PROFILES_ACTIVE=int" 
     networks:
       - network1
     scale: 1

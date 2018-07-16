@@ -13,9 +13,13 @@ import java.util.Optional;
 @Service
 public class RouteCalculatorServiceImpl implements RouteCalculatorService {
 
-    @Autowired
+
     private CityClient cityClient;
 
+    @Autowired
+    public RouteCalculatorServiceImpl(CityClient cityClient){
+        this.cityClient = cityClient;
+    }
 
     @Override
     public Optional<RouteVO> calculateLessConnectionsRoute(String origin, String destination) {

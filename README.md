@@ -15,6 +15,7 @@ Example application of microservice architecture using Spring Boot, Spring Cloud
 - Docker, Docker-compose: Container technology used to not depend on local environment.
 - Lombok: To reduce redundant/boilerplate code.
 - Swagger: Open Api specification.
+- JPA: ORM to manage database with an object oriented approach.
 
 ## How to run the example :
 Make sure you have DOCKER_HOST enviromental variable set with your docker host tcp://docker-host:docker-port, on windows my have to set a few more.
@@ -61,7 +62,16 @@ Address | Description
 --- | ---
 http://<\<docker-host>\>:9091 | Eureka service.
 http://<\<docker-host>\>:9090/routes | Zuul route definitions
-http://<\<docker-host>\>:9090/api/city-service/cities | City service through Zuul api gateway, looked up from Eureka registry
-http://<\<docker-host>\>:9090/api/city-service/swagger-ui.html | City service Swagger-ui Tool
-http://<\<docker-host>\>:9090/api/city-service/v2/api-docs | City service Open API specification
+http://<\<docker-host>\>:9090/api/city-server/cities | List all cities. City service through Zuul api gateway, looked up from Eureka registry
+http://<\<docker-host>\>:9090/api/city-server/cities/{name} | Get requested City. City service through Zuul api gateway, looked up from Eureka registry
+http://<\<docker-host>\>:9090/api/city-server/routes | List all routes. City service through Zuul api gateway, looked up from Eureka registry
+http://<\<docker-host>\>:9090/api/city-server/routes/{origin} | List all routes with origin in requested City. City service through Zuul api gateway, looked up from Eureka registry
+http://<\<docker-host>\>:9090/api/city-server/swagger-ui.html | City service Swagger-ui Tool
+http://<\<docker-host>\>:9090/api/city-server/v2/api-docs | City service Open API specification
+http://<\<docker-host>\>:9090/api/calculation-server/calculations/connections/{origin}/{destination} | Get less connections route from origin to destination. Calculations service through Zuul api gateway, looked up from Eureka registry
+http://<\<docker-host>\>:9090/api/calculation-server/calculations/duration/{origin}/{destination} | Get less duration route from origin to destination. Calculations service through Zuul api gateway, looked up from Eureka registry
+http://<\<docker-host>\>:9090/api/calculation-server/swagger-ui.html | Calculation service Swagger-ui Tool
+http://<\<docker-host>\>:9090/api/calculation-server/v2/api-docs | Calculation service Open API specification
+
+
 	

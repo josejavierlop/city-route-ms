@@ -24,8 +24,12 @@ import java.util.Optional;
 @Api(value="Route Calculation", description = "Calculates best routes from one city to another")
 public class RouteCalculatorController {
 
-    @Autowired
     private RouteCalculatorService routeCalculatorService;
+
+    @Autowired
+    public RouteCalculatorController(RouteCalculatorService routeCalculatorService){
+        this.routeCalculatorService = routeCalculatorService;
+    }
 
     @RequestMapping(path = "/calculations/connections/{origin}/{destination}",
             method = RequestMethod.GET,
