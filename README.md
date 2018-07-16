@@ -80,7 +80,7 @@ http://<\<docker-host>\>:9090/api/calculation-server/v2/api-docs | Calculation s
 Microservice to provide information about cities and routes
 
 Method | Path | Description
---- | ---
+--- | --- | ---
 GET | /cities | List all cities.
 GET | /cities/{name} | Get requested City.
 GET | /routes | List all routes.
@@ -91,11 +91,11 @@ GET | /routes/{origin} | List all routes with origin in requested City.
 Microservice to provide calculations about best routes using City Server API
 
 Method | Path | Description
---- | ---
+--- | --- | ---
 GET | /calculations/connections/{origin}/{destination} | Get less connections route from origin to destination.
 GET | /calculations/duration/{origin}/{destination} | Get less duration route from origin to destination.
 
-## Database desing
+## Database design
 
 Definition of the database table model used. There is sample data available for test.
 
