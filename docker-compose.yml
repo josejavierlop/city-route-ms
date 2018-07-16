@@ -1,14 +1,5 @@
 version: '2.2'
-services:
-  discovery:
-    build:
-      context: ./discovery-server
-      dockerfile: Dockerfile
-    image: discovery-server
-    ports:
-      - "9091:9091"
-    networks:
-      - network1
+services: 
   config:
     build:
       context: ./config-server
@@ -18,6 +9,21 @@ services:
       - "8888:8888"
     networks:
       - network1
+    environment:
+     - "SPRING_PROFILES_ACTIVE=native"
+  discovery:
+    build:
+      context: ./discovery-server
+      dockerfile: Dockerfile
+    image: discovery-server
+    ports:
+      - "9091:9091"
+    networks:
+      - network1
+    depends_on:
+      - config
+    environment:
+     - "SPRING_PROFILES_ACTIVE=int" 
   api:
     build:
       context: ./api-server
@@ -25,6 +31,7 @@ services:
     image: api-server
     depends_on:
      - discovery
+     - config
     ports:
      - "9090:9090"
     environment:
