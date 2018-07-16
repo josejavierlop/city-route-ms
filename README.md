@@ -11,8 +11,8 @@ Example application of microservice architecture using Spring Boot, Spring Cloud
 ![Architecture diagram](https://image.ibb.co/e1SYgy/Diagram.jpg "Architecture diagram")
 
 Swagger API definition is available in repository 
-/calculation-server/swagger-api.json
-/city-server/swagger-api.json
+- /calculation-server/swagger-api.json
+- /city-server/swagger-api.json
 
 ## Use of libraries
 - Spring Boot: Framework for easy creation of microservices.
