@@ -118,7 +118,7 @@ With this set you can test:
 - Get al cities: http://<\<docker-host>\>:9090/api/city-server/cities
 - Get one city: http://<\<docker-host>\>:9090/api/city-server/cities/Zaragoza
 - Get all routes:  http://<\<docker-host>\>:9090/api/city-server/routes
-- Get all routes from Zaragoza: http://<\<docker-host>\>:9090/api/city-server/routes
+- Get all routes from Zaragoza: http://<\<docker-host>\>:9090/api/city-server/routes/Zaragoza
 - Get shortest route in connections from Zaragoza to Sevilla: http://<\<docker-host>\>:9090/api/calculation-server/calculations/connections/Zaragoza/Sevilla
 - Get shortest route in duration from Zaragoza to Sevilla: http://<\<docker-host>\>:9090/api/calculation-server/calculations/duration/Zaragoza/Sevilla
 
