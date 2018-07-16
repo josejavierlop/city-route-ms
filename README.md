@@ -8,6 +8,8 @@ Example application of microservice architecture using Spring Boot, Spring Cloud
 - City Server: Microservice that exposes data related with cities. It is built using Spring Boot, Spring JPA and uses H2 in memory database for persistence.
 - Route Server: Microservice that consumes City Server API. It has client side load balance of request to city server API. It is built using Riboon, from Spring Cloud Netflix besides Spring Boot.
 
+![Architecture diagram](https://image.ibb.co/e1SYgy/Diagram.jpg "Architecture diagram")
+
 ## Use of libraries
 - Spring Boot: Framework for easy creation of microservices.
 - Spring Cloud Config: To allow centraliced configuration.
