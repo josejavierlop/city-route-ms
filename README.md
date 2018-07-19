@@ -95,6 +95,8 @@ http://<\<docker-host>\>:9090/api/calculation-server/v2/api-docs | Calculation s
 
 ## Microservices definitions
 
+This microservices are supposed to be consumed throw Api gateway. However direct access is posible at http://<<docker-host>>:<assigned-port>. This values can be checked running "docker ps" command.
+
 ### City Server
 
 Microservice to provide information about cities and routes. 
